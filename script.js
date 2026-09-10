@@ -1188,15 +1188,24 @@ function sendMessage(message = input.value) {
         return;
     }
 
+// =========================
+// SUARA SEND
+// =========================
 
-    // =========================
-    // SUARA SEND
-    // =========================
+sendSound.currentTime = 0;
 
-    sendSound.currentTime = 0;
+sendSound.play().catch(() => {});
 
-    sendSound.play().catch(() => {});
 
+// Membuka izin suara receive dari interaksi pengguna
+receiveSound.volume = 0.5;
+
+receiveSound.play()
+    .then(() => {
+        receiveSound.pause();
+        receiveSound.currentTime = 0;
+    })
+    .catch(() => {});
 
     // =========================
     // BUBBLE USER
